@@ -2,8 +2,8 @@ import './globals.css'
 import { Providers } from './providers'
 
 export const metadata = {
-  title: 'Sysuit Info Tech | Liquid Digital Solutions',
-  description: 'Sysuit Info Tech builds POS & Billing Software, Corporate Websites, Meta/Google Ads and Review Generation systems. Futuristic technology, real business results.',
+  title: 'SYSU IT | Digital Business & Technology Solutions',
+  description: 'SYSU IT delivers Health IT, software development, website design, web & mobile apps, POS billing software and digital marketing for businesses across the globe.',
 }
 
 export default function RootLayout({ children }) {
