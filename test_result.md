@@ -105,7 +105,7 @@
 user_problem_statement: "Corporate website + client portal for Sysuit Info Tech (Liquid Gas UI). Landing, services, Silver/Gold/Diamond tiers, Contact form and Ask-a-Question form connected to a database via Next.js API routes with validation."
 
 backend:
-  - task: "Contact form API (POST/GET /api/contact)"
+  - task: "PostgreSQL migration - Contact API (POST/GET /api/contact)"
     implemented: true
     working: true
     file: "app/api/[[...path]]/route.js"
@@ -113,12 +113,15 @@ backend:
     priority: "high"
     needs_retesting: false
     status_history:
-        -working: "NA"
-        -agent: "main"
-        -comment: "POST validates name/email(regex)/phone/message, stores to 'contacts' collection with uuid + created_at. Returns 201 with success message. GET returns list sorted desc without _id. Curl POST + stats verified manually."
         -working: true
         -agent: "testing"
-        -comment: "✅ ALL TESTS PASSED (7/7). POST /api/contact: Valid submissions with/without optional company field return 201 with {success, id, message}. Validation correctly returns 400 with 'errors' object for missing name/phone/message and invalid email. GET /api/contact returns array sorted newest-first with no _id field present. Data persists correctly to MongoDB 'contacts' collection."
+        -comment: "Previously passed on MongoDB (7/7)."
+        -working: "NA"
+        -agent: "main"
+        -comment: "MIGRATED from MongoDB to PostgreSQL (local pg 15, DATABASE_URL, lib/db.js pool + lib/schema.js). Endpoints/response shapes UNCHANGED: POST validates name/email/phone/message -> 201 {success,id,message}; 400 {error,errors} on invalid; GET returns array of rows (no _id, uses SQL columns incl company/created_at). Verified via curl + psql. Needs full re-test."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ ALL TESTS PASSED (5/5). POST /api/contact: Valid submissions return 201 {success, id, message} with 36-char UUID. Validation correctly returns 400 with 'errors' object for missing name/phone/message and invalid email. Optional company field works (omitted -> stored as empty string, still 201). GET /api/contact returns array with PostgreSQL fields (id, name, email, phone, company, message, type, status, created_at). NO MongoDB _id field present. All ids are UUIDs. Data persists correctly to PostgreSQL 'contacts' table verified via psql."
 
   - task: "Ask-a-Question / Inquiry API (POST/GET /api/inquiries)"
     implemented: true
@@ -134,6 +137,9 @@ backend:
         -working: true
         -agent: "testing"
         -comment: "✅ ALL TESTS PASSED (7/7). POST /api/inquiries: Valid submissions return 201 with {success, id, message}. Optional category field defaults to 'General' when omitted. Validation correctly returns 400 with 'errors' object for missing name/email/subject/question and invalid email. GET /api/inquiries returns array with no _id field. Data persists correctly to MongoDB 'inquiries' collection."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ RE-TESTED ON POSTGRESQL (5/5). POST /api/inquiries: Valid submissions return 201 with UUID id. Category defaults to 'General' when omitted (verified). Validation returns 400 with 'errors' for missing name/email/subject/question and invalid email. GET /api/inquiries returns array with PostgreSQL fields (id, name, email, category, subject, question, type, status, created_at). NO MongoDB _id field. Data persists to PostgreSQL 'inquiries' table."
 
   - task: "Admin stats API (GET /api/stats)"
     implemented: true
@@ -149,6 +155,9 @@ backend:
         -working: true
         -agent: "testing"
         -comment: "✅ TEST PASSED (1/1). GET /api/stats returns correct structure {contacts, inquiries, total}. Total calculation verified as contacts + inquiries. Counts increment correctly after new inserts (tested with contact insertion, stats increased from initial values)."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ RE-TESTED ON POSTGRESQL (2/2). GET /api/stats returns correct structure {contacts, inquiries, total}. Total calculation verified (total = contacts + inquiries). Stats increment correctly after new submissions (tested: contacts 3→4, inquiries 3→4, total 6→8). PostgreSQL COUNT queries working correctly."
 
 frontend:
   - task: "Home page (light theme) - all sections + service card links"
@@ -213,8 +222,8 @@ frontend:
 
 metadata:
   created_by: "main_agent"
-  version: "1.2"
-  test_sequence: 2
+  version: "1.3"
+  test_sequence: 3
   run_ui: true
 
 test_plan:
@@ -225,6 +234,10 @@ test_plan:
 
 agent_communication:
     -agent: "main"
+    -message: "BACKEND MIGRATED to PostgreSQL. Please re-test all 3 API endpoints against the NEW Postgres backend (data now in local pg db 'sysuit', tables contacts & inquiries). Same contract as before: POST /api/contact {name,email,phone,company?,message} -> 201 {success,id,message}, 400 {error,errors} on invalid (missing name/phone/message or bad email); GET /api/contact -> array of rows (fields incl company, created_at; NO Mongo _id). POST /api/inquiries {name,email,category?,subject,question} -> 201; category defaults 'General'; 400 on missing name/email/subject/question or bad email; GET /api/inquiries -> array. GET /api/stats -> {contacts,inquiries,total} increments after inserts. Verify data persists to Postgres."
+
+agent_communication:
+    -agent: "main"
     -message: "Please test the 3 backend endpoints. Focus on: valid submissions returning 201 + persisted data; validation failures returning 400 with an 'errors' object (missing name/email/phone/message for contact; missing subject/question for inquiries; invalid email format). Also confirm GET endpoints return arrays without Mongo _id and stats counts increase after inserts. Base URL uses /api prefix."
     -agent: "testing"
     -message: "✅ BACKEND TESTING COMPLETE - ALL 15 TESTS PASSED. All three API endpoints (contact, inquiries, stats) are working perfectly. Validation, happy paths, optional fields, defaults, _id exclusion, and data persistence all verified. No issues found. Backend is production-ready."
@@ -232,3 +245,7 @@ agent_communication:
     -message: "All frontend tasks now need comprehensive UI testing across desktop (1920x800) and mobile (390x844) viewports. Test home page sections visibility (check for framer-motion bug), navbar links, service cards, forms (validation + submission + reset), service detail pages, admin dashboard. Use external URL from NEXT_PUBLIC_BASE_URL."
     -agent: "testing"
     -message: "✅ FRONTEND TESTING COMPLETE - ALL TESTS PASSED (Desktop 1920x800 & Mobile 390x844). Home page: ALL sections visible including hero heading 'The Best IT Solutions For Your Business' - NO framer-motion 'stuck invisible' bug detected. All 7 service cards present and functional. Navbar anchor links work correctly. Contact & Ask forms: validation works (4 errors on empty submit), successful submission shows toast and resets form, data persists to backend. Service detail pages render correctly (tested health-it, pos-application, erp-solutions) with all sections. Invalid slug shows 'Service not found'. Admin dashboard displays all submissions correctly with working tabs and refresh. Mobile: all sections visible, hamburger menu works. Application is production-ready with no critical issues found."
+    -agent: "main"
+    -message: "PostgreSQL migration complete. All backend endpoints migrated from MongoDB to PostgreSQL. Please re-test all endpoints comprehensively."
+    -agent: "testing"
+    -message: "✅ POSTGRESQL MIGRATION TESTING COMPLETE - ALL 12 TESTS PASSED (100% success rate). Tested all 5 endpoints comprehensively: POST /api/contact (valid data, missing fields, invalid email, optional company field), GET /api/contact (array with UUID ids, no _id field), POST /api/inquiries (valid data, missing fields, invalid email, default category), GET /api/inquiries (array with UUID ids, no _id field), GET /api/stats (correct structure, increment verification). All data persists correctly to PostgreSQL tables 'contacts' and 'inquiries' (verified via psql). API contract unchanged from MongoDB version. All validation working correctly. PostgreSQL migration is SUCCESSFUL and production-ready."

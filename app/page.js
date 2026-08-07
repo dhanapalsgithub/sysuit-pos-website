@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import useEmblaCarousel from 'embla-carousel-react'
 import { Toaster, toast } from 'sonner'
 import { SERVICES } from '@/lib/services-data'
 import {
   Menu, X, ArrowRight, Cpu, Check, Sparkles, Phone, Mail, Building2,
-  MessageSquareText, HelpCircle, Send, ChevronRight, Activity, Layers,
+  MessageSquareText, HelpCircle, Send, ChevronRight, ChevronLeft, Activity, Layers,
   ShieldCheck, Zap, Rocket, Server, Lock, Users, PackageCheck, UserCog,
-  Map, GitMerge, ClipboardCheck, Facebook, Twitter, Linkedin,
+  Map, GitMerge, ClipboardCheck, Facebook, Twitter, Linkedin, Star, Quote,
 } from 'lucide-react'
 
 const IMG = {
@@ -49,6 +50,17 @@ const TIERS = [
   { name: 'Gold', icon: Zap, price: '$1,199', tagline: 'Most popular for growth', accent: 'from-amber-300 to-yellow-500', featured: true, features: ['Everything in Silver', 'Web + Mobile application', 'Digital marketing setup', 'ERP / inventory module', 'SEO optimization', '3 months priority support'] },
   { name: 'Diamond', icon: Rocket, price: '$2,499', tagline: 'Full-scale digital transformation', accent: 'from-cyan-300 to-blue-500', featured: false, features: ['Everything in Gold', 'Health IT / custom software', 'Dedicated managed IT services', 'AI web app & data sync', 'Analytics dashboards', '12 months premium support'] },
 ]
+
+const TESTIMONIALS = [
+  { name: 'Dr. Anitha R.', role: 'Clinic Director, MediCare Plus', rating: 5, quote: 'SYSU IT’s Health IT platform streamlined our patient records and scheduling. Wait times dropped and our staff finally love the software they use.' },
+  { name: 'Rajesh Kumar', role: 'Owner, FreshMart Retail', rating: 5, quote: 'The POS system is fast and reliable — even offline. Inventory and billing that used to take hours now happens in minutes across all our outlets.' },
+  { name: 'Sarah Thompson', role: 'Marketing Head, BlueWave', rating: 5, quote: 'Our Google and Meta campaigns finally show real ROI. Leads are up 3x and we can actually see where every rupee goes.' },
+  { name: 'Mohammed Ali', role: 'CEO, LogiTrans', rating: 5, quote: 'Their ERP unified our finance, inventory and HR into one dashboard. Leadership now makes decisions on real-time data, not guesswork.' },
+  { name: 'Priya S.', role: 'Founder, StyleHub', rating: 5, quote: 'Beautiful, fast website that converts. Our online enquiries doubled within the first month of launch. Highly professional team.' },
+  { name: 'David Chen', role: 'CTO, AppNova', rating: 5, quote: 'The mobile app SYSU IT built for us feels truly native on both iOS and Android. Engagement and retention have never been better.' },
+]
+
+const LOGOS = ['MediCare Plus', 'FreshMart', 'BlueWave', 'LogiTrans', 'StyleHub', 'AppNova']
 
 // Mount-gated animation wrapper (avoids hydration "stuck invisible")
 const Reveal = ({ children, className = '', y = 24, x = 0, scale = 1, delay = 0 }) => {
@@ -251,6 +263,69 @@ const Strategy = () => (
   </Section>
 )
 
+const Testimonials = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' })
+  const [selected, setSelected] = useState(0)
+  useEffect(() => {
+    if (!emblaApi) return
+    const onSel = () => setSelected(emblaApi.selectedScrollSnap())
+    emblaApi.on('select', onSel); onSel()
+    const id = setInterval(() => { if (emblaApi) emblaApi.scrollNext() }, 4500)
+    return () => { clearInterval(id); emblaApi.off('select', onSel) }
+  }, [emblaApi])
+  return (
+    <Section id="testimonials" className="py-24">
+      <div className="mx-auto max-w-2xl text-center">
+        <Pill>Client stories</Pill>
+        <h2 className="mt-5 font-display text-3xl font-bold text-slate-900 sm:text-4xl">Trusted by teams <span className="liquid-text">worldwide</span></h2>
+        <p className="mt-4 text-slate-600">Don’t just take our word for it — here’s what our clients say about working with SYSU IT.</p>
+      </div>
+
+      {/* Client logos */}
+      <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+        {LOGOS.map((l) => (
+          <span key={l} className="rounded-xl glass px-5 py-2.5 font-display text-sm font-bold tracking-tight text-slate-500">{l}</span>
+        ))}
+      </div>
+
+      {/* Carousel */}
+      <div className="mt-12 overflow-hidden" ref={emblaRef}>
+        <div className="flex gap-6">
+          {TESTIMONIALS.map((t, i) => (
+            <div key={i} className="min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%]">
+              <div className="flex h-full flex-col rounded-2xl glass p-7">
+                <Quote className="h-8 w-8 text-cyan-400/70" />
+                <div className="mt-3 flex gap-0.5">
+                  {Array.from({ length: t.rating }).map((_, s) => (<Star key={s} className="h-4 w-4 fill-amber-400 text-amber-400" />))}
+                </div>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">“{t.quote}”</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full liquid-gradient font-display text-sm font-bold text-white">
+                    {t.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}
+                  </div>
+                  <div><p className="font-semibold text-slate-900">{t.name}</p><p className="text-xs text-slate-500">{t.role}</p></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Controls */}
+      <div className="mt-8 flex items-center justify-center gap-4">
+        <button onClick={() => emblaApi && emblaApi.scrollPrev()} className="flex h-10 w-10 items-center justify-center rounded-full glass text-slate-600 transition hover:text-cyan-600" aria-label="previous"><ChevronLeft className="h-5 w-5" /></button>
+        <div className="flex gap-2">
+          {TESTIMONIALS.map((_, i) => (
+            <button key={i} onClick={() => emblaApi && emblaApi.scrollTo(i)} aria-label={`slide ${i + 1}`}
+              className={`h-2.5 rounded-full transition-all ${selected === i ? 'w-7 liquid-gradient' : 'w-2.5 bg-slate-300'}`} />
+          ))}
+        </div>
+        <button onClick={() => emblaApi && emblaApi.scrollNext()} className="flex h-10 w-10 items-center justify-center rounded-full glass text-slate-600 transition hover:text-cyan-600" aria-label="next"><ChevronRight className="h-5 w-5" /></button>
+      </div>
+    </Section>
+  )
+}
+
 const Pricing = () => (
   <Section id="pricing" className="py-24">
     <div className="mx-auto max-w-2xl text-center">
@@ -436,6 +511,7 @@ function App() {
       <Services />
       <StatsBand />
       <Strategy />
+      <Testimonials />
       <Pricing />
       <FormsSection />
       <CTA />
