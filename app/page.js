@@ -7,7 +7,7 @@ import {
   Menu, X, ArrowRight, Cpu, CreditCard, Globe, Megaphone, Star,
   ShieldCheck, Zap, Rocket, Check, Sparkles, Phone, Mail, Building2,
   MessageSquareText, HelpCircle, Send, ChevronRight, Activity, Gauge,
-  Layers, Database, Award,
+  Layers, Database, Award, Boxes,
 } from 'lucide-react'
 
 // ---------------------------------------------------------------------------
@@ -26,6 +26,7 @@ const SERVICES = [
   { icon: Globe, title: 'Corporate Websites', desc: 'High-performance, SEO-optimized web experiences that convert visitors to clients.', tint: 'from-emerald-400/20 to-teal-400/10' },
   { icon: Megaphone, title: 'Meta & Google Ads', desc: 'Data-driven ad campaigns engineered for maximum ROAS across every funnel stage.', tint: 'from-sky-400/20 to-blue-400/10' },
   { icon: Star, title: 'Review Generation', desc: 'Automated reputation engine that turns happy customers into 5-star public proof.', tint: 'from-teal-400/20 to-emerald-400/10' },
+  { icon: Boxes, title: 'ERP Solutions', desc: 'Unified ERP to run finance, inventory, HR & operations from one intelligent dashboard.', tint: 'from-cyan-400/20 to-blue-400/10' },
   { icon: Layers, title: 'Custom Software', desc: 'Bespoke platforms & integrations tailored precisely to your operational workflow.', tint: 'from-indigo-400/20 to-cyan-400/10' },
 ]
 
@@ -385,7 +386,7 @@ const ContactForm = () => {
 // ---------------------------------------------------------------------------
 // Ask a Question form
 // ---------------------------------------------------------------------------
-const CATEGORIES = ['General', 'POS Systems', 'Billing Software', 'Websites', 'Meta/Google Ads', 'Review Generation', 'Custom Software']
+const CATEGORIES = ['General', 'POS Systems', 'Billing Software', 'Websites', 'Meta/Google Ads', 'Review Generation', 'ERP Solutions', 'Custom Software']
 
 const AskForm = () => {
   const [form, setForm] = useState({ name: '', email: '', category: 'General', subject: '', question: '' })
@@ -490,7 +491,7 @@ const Footer = () => (
       <div>
         <p className="font-semibold text-slate-200">Services</p>
         <ul className="mt-3 space-y-2 text-sm text-slate-400">
-          {['POS Systems', 'Billing Software', 'Corporate Websites', 'Meta/Google Ads', 'Review Generation'].map((x) => <li key={x}><a href="#services" className="hover:text-cyan-300">{x}</a></li>)}
+          {['POS Systems', 'Billing Software', 'Corporate Websites', 'Meta/Google Ads', 'Review Generation', 'ERP Solutions'].map((x) => <li key={x}><a href="#services" className="hover:text-cyan-300">{x}</a></li>)}
         </ul>
       </div>
       <div>
