@@ -20,10 +20,10 @@ const IMG = {
 
 const CONTACT = {
   email: 'sales@sysuitinfotech.com',
-  phone: '+1 657-652-3084',
-  facebook: 'https://www.facebook.com/sysuit/',
-  twitter: 'https://twitter.com/it_sysu',
-  linkedin: 'https://www.linkedin.com/company/sysuinformationtechnology/about/',
+  phone: '+919840287775',
+  facebook: 'https://www.facebook.com/',
+  twitter: 'https://twitter.com/',
+  linkedin: 'https://www.linkedin.com/',
 }
 
 const HIGHLIGHTS = [
