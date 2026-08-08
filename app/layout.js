@@ -4,6 +4,11 @@ import { Providers } from './providers'
 export const metadata = {
   title: 'SYSUIT INFO TECH | Digital Business & Technology Solutions',
   description: 'SYSUIT INFO TECH delivers Health IT, software development, website design, web & mobile apps, POS billing software and digital marketing for businesses across the globe.',
+  icons: {
+    icon: 'https://i.ibb.co/Hf32KsJ9/Chat-GPT-Image-Aug-8-2026-10-04-09-AM.png',
+    shortcut: 'https://i.ibb.co/Hf32KsJ9/Chat-GPT-Image-Aug-8-2026-10-04-09-AM.png',
+    apple: 'https://i.ibb.co/Hf32KsJ9/Chat-GPT-Image-Aug-8-2026-10-04-09-AM.png',
+  },
   openGraph: {
     title: 'SYSUIT INFO TECH | Digital Business & Technology Solutions',
     description: 'SYSUIT INFO TECH delivers Health IT, software development, website design, web & mobile apps, POS billing software and digital marketing for businesses across the globe.',
