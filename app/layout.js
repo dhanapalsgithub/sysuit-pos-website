@@ -5,16 +5,16 @@ export const metadata = {
   title: 'SYSUIT INFO TECH | Digital Business & Technology Solutions',
   description: 'SYSUIT INFO TECH delivers Health IT, software development, website design, web & mobile apps, POS billing software and digital marketing for businesses across the globe.',
   icons: {
-    icon: 'https://kommodo.ai/i/yVbHqXrk7UqaPLPyoIzP',
-    shortcut: 'https://kommodo.ai/i/yVbHqXrk7UqaPLPyoIzP',
-    apple: 'https://kommodo.ai/i/yVbHqXrk7UqaPLPyoIzP',
+    icon: 'https://www.image2url.com/r2/default/images/1786211606294-1e47c705-e869-4f1a-ad4b-2fc120a9a625.png',
+    shortcut: 'https://www.image2url.com/r2/default/images/1786211606294-1e47c705-e869-4f1a-ad4b-2fc120a9a625.png',
+    apple: 'https://www.image2url.com/r2/default/images/1786211606294-1e47c705-e869-4f1a-ad4b-2fc120a9a625.png',
   },
   openGraph: {
     title: 'SYSUIT INFO TECH | Digital Business & Technology Solutions',
     description: 'SYSUIT INFO TECH delivers Health IT, software development, website design, web & mobile apps, POS billing software and digital marketing for businesses across the globe.',
     images: [
       {
-        url: 'https://kommodo.ai/i/yVbHqXrk7UqaPLPyoIzP',
+        url: 'https://www.image2url.com/r2/default/images/1786211606294-1e47c705-e869-4f1a-ad4b-2fc120a9a625.png',
         width: 1200,
         height: 630,
         alt: 'SYSUIT INFO TECH Preview Image',
@@ -25,7 +25,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'SYSUIT INFO TECH | Digital Business & Technology Solutions',
     description: 'SYSUIT INFO TECH delivers Health IT, software development, website design, web & mobile apps, POS billing software and digital marketing for businesses across the globe.',
-    images: ['https://kommodo.ai/i/yVbHqXrk7UqaPLPyoIzP'],
+    images: ['https://www.image2url.com/r2/default/images/1786211606294-1e47c705-e869-4f1a-ad4b-2fc120a9a625.png'],
   },
 }
 
