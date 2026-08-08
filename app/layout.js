@@ -15,8 +15,8 @@ export const metadata = {
     images: [
       {
         url: 'https://www.image2url.com/r2/default/images/1786211606294-1e47c705-e869-4f1a-ad4b-2fc120a9a625.png',
-        width: 1200,
-        height: 630,
+        width: 2200,
+        height: 2230,
         alt: 'SYSUIT INFO TECH Preview Image',
       },
     ],
