@@ -7,7 +7,7 @@ import {
   Cpu, ArrowLeft, ArrowRight, Check, Sparkles, Mail, Phone, ChevronRight,
 } from 'lucide-react'
 
-const CONTACT = { email: 'sales@sysuit.com', phone: '+1 657-652-3084' }
+const CONTACT = { email: 'sales@sysuitinfotech.com', phone: '+1 657-652-3084' }
 
 const LiquidBackground = () => (
   <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
@@ -21,8 +21,8 @@ const MiniNav = () => (
   <header className="fixed inset-x-0 top-0 z-50 py-4">
     <div className="mx-3 flex max-w-7xl items-center justify-between rounded-2xl glass-strong px-4 py-2.5 sm:mx-auto sm:px-6">
       <a href="/" className="flex items-center gap-2.5">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl liquid-gradient accent-ring"><Cpu className="h-5 w-5 text-white" /></div>
-        <span className="font-display text-lg font-bold text-slate-900">SYSU <span className="liquid-text">IT</span></span>
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl liquid-gradient accent-ring"><cpu className="h-5 w-5 text-white" /></div>
+        <span className="font-display text-lg font-bold text-slate-900">SYSUIT<span className="liquid-text">INFO TECH</span></span>
       </a>
       <a href="/#contact"><button className="inline-flex items-center gap-2 rounded-xl liquid-gradient px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-105 accent-ring">Get a Quote <ArrowRight className="h-4 w-4" /></button></a>
     </div>
@@ -123,13 +123,13 @@ export default function ServiceDetail({ params }) {
 
       <footer className="relative z-10 border-t border-slate-200 py-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 sm:flex-row sm:px-8">
-          <a href="/" className="flex items-center gap-2.5"><div className="flex h-8 w-8 items-center justify-center rounded-lg liquid-gradient"><Cpu className="h-4 w-4 text-white" /></div><span className="font-display font-bold text-slate-900">SYSU <span className="liquid-text">IT</span></span></a>
+          <a href="/" className="flex items-center gap-2.5"><div className="flex h-8 w-8 items-center justify-center rounded-lg liquid-gradient"><Cpu className="h-4 w-4 text-white" /></div><span className="font-display font-bold text-slate-900">SYSUIT<span className="liquid-text">INFO TECH</span></span></a>
           <div className="flex items-center gap-6 text-sm text-slate-600">
             <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 hover:text-cyan-600"><Mail className="h-4 w-4 text-cyan-500" /> {CONTACT.email}</a>
             <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-cyan-600"><Phone className="h-4 w-4 text-cyan-500" /> {CONTACT.phone}</a>
           </div>
         </div>
-        <p className="mt-6 text-center text-xs text-slate-400">© 2026 SYSU IT. All Rights Reserved.</p>
+        <p className="mt-6 text-center text-xs text-slate-400">© 2026 SYSUIT INFO TECH. All Rights Reserved.</p>
       </footer>
     </main>
   )

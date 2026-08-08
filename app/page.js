@@ -13,13 +13,13 @@ import {
 } from 'lucide-react'
 
 const IMG = {
-  hero: 'https://images.pexels.com/photos/37824225/pexels-photo-37824225.jpeg',
-  network: 'https://images.pexels.com/photos/30547618/pexels-photo-30547618.jpeg',
-  cta: 'https://images.pexels.com/photos/30547573/pexels-photo-30547573.jpeg',
+  hero: 'https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg',
+  network: 'https://images.pexels.com/photos/4955393/pexels-photo-4955393.jpeg',
+  cta: 'https://images.pexels.com/photos/1181676/pexels-photo-1181676.jpeg',
 }
 
 const CONTACT = {
-  email: 'sales@sysuit.com',
+  email: 'sales@sysuitinfotech.com',
   phone: '+1 657-652-3084',
   facebook: 'https://www.facebook.com/sysuit/',
   twitter: 'https://twitter.com/it_sysu',
@@ -110,10 +110,17 @@ const Navbar = () => {
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
       <div className={`mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8 ${scrolled ? 'glass-strong rounded-2xl mx-3 sm:mx-6 py-2.5 px-4' : ''} transition-all`}>
         <a href="#home" className="flex items-center gap-2.5">
-          <div className="relative flex h-9 w-9 items-center justify-center rounded-xl liquid-gradient animate-shimmer accent-ring">
-            <Cpu className="h-5 w-5 text-white" />
+          <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl liquid-gradient animate-shimmer accent-ring" suppressHydrationWarning>
+            <img
+              src="https://i.ibb.co/Hf32KsJ9/Chat-GPT-Image-Aug-8-2026-10-04-09-AM.png"
+              alt="SYSUIT Logo"
+              className="h-full w-full object-cover"
+              suppressHydrationWarning
+            />
           </div>
-          <span className="font-display text-lg font-bold tracking-tight text-slate-900">SYSU <span className="liquid-text">IT</span></span>
+          <span className="font-display text-lg font-bold tracking-tight text-slate-900">
+            SYSUIT <span className="liquid-text">INFO TECH</span>
+          </span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map(([label, href]) => (<a key={href} href={href} className="text-sm font-medium text-slate-600 transition-colors hover:text-cyan-600">{label}</a>))}
@@ -146,7 +153,7 @@ const Hero = () => (
           The Best <span className="liquid-text text-glow">IT Solutions</span> For Your Business
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
-          SYSU IT combines industry expertise with tech genius to create business-changing digital solutions — Health IT, software development, web &amp; mobile, POS billing and digital marketing across the globe.
+          SYSUIT INFO TECH combines industry expertise with tech genius to create business-changing digital solutions — Health IT, software development, web &amp; mobile, POS billing and digital marketing across the globe.
         </p>
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <a href="#services"><button className="group inline-flex items-center gap-2 rounded-xl liquid-gradient px-7 py-3.5 font-semibold text-white transition hover:brightness-105 accent-ring">Explore Services <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" /></button></a>
@@ -195,7 +202,7 @@ const About = () => (
       <div>
         <Pill>Welcome to our company</Pill>
         <h2 className="mt-5 font-display text-3xl font-bold text-slate-900 sm:text-4xl">A global leader in <span className="liquid-text">digital transformation</span></h2>
-        <p className="mt-4 text-slate-600">SYSU IT is a global leader in technology services &amp; consulting with 30 years of industry experience. From product design and application development to knowledge management and business process management, we help our customers solve complex problems. Founded on a vision started in 2005, SYSU IT expanded to help business partners across the globe.</p>
+        <p className="mt-4 text-slate-600">SYSUIT INFO TECH  is a global leader in technology services &amp; consulting with 30 years of industry experience. From product design and application development to knowledge management and business process management, we help our customers solve complex problems. Founded on a vision started in 2005, SYSUIT INFO TECH expanded to help business partners across the globe.</p>
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {['Web & Mobile Applications', 'Improved Website Design', 'Data & Text Synchronization', 'Artificial Intelligence Web Apps'].map((f) => (
             <div key={f} className="flex items-center gap-2.5 rounded-xl glass px-4 py-3 text-sm font-medium text-slate-700"><Check className="h-4 w-4 flex-shrink-0 text-emerald-500" /> {f}</div>
@@ -278,7 +285,7 @@ const Testimonials = () => {
       <div className="mx-auto max-w-2xl text-center">
         <Pill>Client stories</Pill>
         <h2 className="mt-5 font-display text-3xl font-bold text-slate-900 sm:text-4xl">Trusted by teams <span className="liquid-text">worldwide</span></h2>
-        <p className="mt-4 text-slate-600">Don’t just take our word for it — here’s what our clients say about working with SYSU IT.</p>
+        <p className="mt-4 text-slate-600">Don’t just take our word for it — here’s what our clients say about working with SYSUIT INFO TECH.</p>
       </div>
 
       {/* Client logos */}
@@ -473,7 +480,7 @@ const Footer = () => (
       <div>
         <div className="flex items-center gap-2.5">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl liquid-gradient"><Cpu className="h-5 w-5 text-white" /></div>
-          <span className="font-display text-lg font-bold text-slate-900">SYSU <span className="liquid-text">IT</span></span>
+          <span className="font-display text-lg font-bold text-slate-900">SYSUIT  <span className="liquid-text">INFO TECH </span></span>
         </div>
         <p className="mt-4 max-w-xs text-sm text-slate-600">Global technology services &amp; consulting — delivering digital transformation for businesses worldwide.</p>
         <div className="mt-5 flex gap-3"><Social href={CONTACT.facebook} icon={Facebook} /><Social href={CONTACT.twitter} icon={Twitter} /><Social href={CONTACT.linkedin} icon={Linkedin} /></div>
@@ -495,7 +502,7 @@ const Footer = () => (
         </ul>
       </div>
     </div>
-    <p className="mt-10 text-center text-xs text-slate-400">© 2026 SYSU IT. All Rights Reserved.</p>
+    <p className="mt-10 text-center text-xs text-slate-400">© 2026 SYSUIT INFO TECH. All Rights Reserved.</p>
   </footer>
 )
 
