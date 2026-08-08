@@ -5,16 +5,16 @@ export const metadata = {
   title: 'SYSUIT INFO TECH | Digital Business & Technology Solutions',
   description: 'SYSUIT INFO TECH delivers Health IT, software development, website design, web & mobile apps, POS billing software and digital marketing for businesses across the globe.',
   icons: {
-    icon: 'https://i.ibb.co/Hf32KsJ9/Chat-GPT-Image-Aug-8-2026-10-04-09-AM.png',
-    shortcut: 'https://i.ibb.co/Hf32KsJ9/Chat-GPT-Image-Aug-8-2026-10-04-09-AM.png',
-    apple: 'https://i.ibb.co/Hf32KsJ9/Chat-GPT-Image-Aug-8-2026-10-04-09-AM.png',
+    icon: 'https://kommodo.ai/i/yVbHqXrk7UqaPLPyoIzP',
+    shortcut: 'https://kommodo.ai/i/yVbHqXrk7UqaPLPyoIzP',
+    apple: 'https://kommodo.ai/i/yVbHqXrk7UqaPLPyoIzP',
   },
   openGraph: {
     title: 'SYSUIT INFO TECH | Digital Business & Technology Solutions',
     description: 'SYSUIT INFO TECH delivers Health IT, software development, website design, web & mobile apps, POS billing software and digital marketing for businesses across the globe.',
     images: [
       {
-        url: 'https://i.ibb.co/Hf32KsJ9/Chat-GPT-Image-Aug-8-2026-10-04-09-AM.png',
+        url: 'https://kommodo.ai/i/yVbHqXrk7UqaPLPyoIzP',
         width: 1200,
         height: 630,
         alt: 'SYSUIT INFO TECH Preview Image',
@@ -25,7 +25,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'SYSUIT INFO TECH | Digital Business & Technology Solutions',
     description: 'SYSUIT INFO TECH delivers Health IT, software development, website design, web & mobile apps, POS billing software and digital marketing for businesses across the globe.',
-    images: ['https://i.ibb.co/Hf32KsJ9/Chat-GPT-Image-Aug-8-2026-10-04-09-AM.png'],
+    images: ['https://kommodo.ai/i/yVbHqXrk7UqaPLPyoIzP'],
   },
 }
 
